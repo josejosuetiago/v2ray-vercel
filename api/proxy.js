@@ -1,10 +1,18 @@
-export default async (req, res) => {
-  const target = "wss://seu-endereco-vps"; // Substitua pelo endereço da sua VPS.
+import httpProxy from "http-proxy";
 
-  res.writeHead(302, {
-    Location: target,
-    "X-Proxy-By": "Vercel"
+const proxy = httpProxy.createProxyServer();
+
+export default (req, res) => {
+  const target = "wss://45.140.192.26:443"; // Substitua pelo endereço da sua VPS.
+
+  // Redirecionando a solicitação para a VPS
+  proxy.web(req, res, { target, changeOrigin: true }, (err) => {
+    console.error("Erro ao encaminhar a solicitação:", err);
+    res.status(502).send("Erro ao conectar ao servidor WebSocket.");
   });
 
-  res.end();
+  // Escutando erros de WebSocket
+  proxy.on("error", (err) => {
+    console.error("Erro no proxy WebSocket:", err);
+  });
 };
