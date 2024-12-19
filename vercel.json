@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/v2ray",
+      "dest": "/api/proxy.js"
+    }
+  ]
+}
