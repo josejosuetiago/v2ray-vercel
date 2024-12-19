@@ -3,7 +3,7 @@ import httpProxy from "http-proxy";
 const proxy = httpProxy.createProxyServer();
 
 export default (req, res) => {
-  const target = "wss://se.zclaro.com.br:80"; // Substitua pelo endereço da sua VPS.
+  const target = "wss://se.zclaro.com.br:443"; // Substitua pelo endereço da sua VPS.
 
   // Redirecionando a solicitação para a VPS
   proxy.web(req, res, { target, changeOrigin: true }, (err) => {
