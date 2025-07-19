@@ -1,9 +1,8 @@
 {
-  "version": 2,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/v2ray",
-      "dest": "/api/proxy.js"
+      "source": "/(.*)",
+      "destination": "http://209.14.70.204/$1"
     }
   ]
 }
